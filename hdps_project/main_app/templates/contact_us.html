@@ -1,0 +1,189 @@
+{% extends "base.html" %}
+
+{% block title %}Contact Us{% endblock %}
+
+{% block content %}
+<style>
+/* Hero section */
+.hero {
+  background: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
+  min-height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  margin-bottom: 2rem;
+}
+.hero-inner {
+  background: rgba(0,0,0,0.4);
+  padding: 36px 24px;
+  border-radius: 14px;
+  max-width: 900px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Contact info cards */
+.contact-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 28px 22px;
+  min-height: 160px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.contact-card .icon {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+.contact-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.15);
+}
+
+/* Office hours */
+.office-hours {
+  max-width: 650px;
+  margin: 0 auto;
+}
+.office-hours .card {
+  border-radius: 14px;
+}
+
+/* Map container */
+.map-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.12);
+}
+
+/* Contact form */
+.contact-form {
+  max-width: 800px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.1);
+}
+.btn-send {
+  border-radius: 999px;
+  padding: 10px 36px;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .hero { min-height: 220px; }
+  .hero-inner { padding: 22px 16px; }
+  .contact-card { padding: 18px; }
+  .contact-form { padding: 18px; }
+}
+</style>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner mx-auto">
+    <h1 class="display-6 fw-bold mb-2">Get in Touch</h1>
+    <p class="lead mb-0">Questions, suggestions or admissions — we’re here to help.</p>
+  </div>
+</section>
+
+<!-- CONTACT INFO -->
+<section class="py-5">
+  <div class="container">
+    <div class="row g-4 justify-content-center">
+      <div class="col-12 col-sm-6 col-md-4">
+        <div class="contact-card shadow-sm">
+          <div class="icon">📍</div>
+          <h5 class="fw-semibold">Address</h5>
+          <p class="mb-0">123 Education Lane<br>Your City, State - 000000</p>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6 col-md-4">
+        <div class="contact-card shadow-sm">
+          <div class="icon">📞</div>
+          <h5 class="fw-semibold">Call Us</h5>
+          <p class="mb-0">+91 12345 67890<br>+91 98765 43210</p>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6 col-md-4">
+        <div class="contact-card shadow-sm">
+          <div class="icon">📧</div>
+          <h5 class="fw-semibold">Email</h5>
+          <p class="mb-0">info@yourschool.com<br>admissions@yourschool.com</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OFFICE HOURS -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <h2 class="text-center fw-bold mb-4">Office Hours</h2>
+    <div class="office-hours">
+      <div class="card shadow-sm border-0">
+        <div class="card-body p-4 text-center">
+          <ul class="list-unstyled fs-5 mb-0">
+            <li class="mb-2">Monday – Friday: 9:00 AM – 4:00 PM</li>
+            <li class="mb-2">Saturday: 9:00 AM – 1:00 PM</li>
+            <li class="mb-0 text-danger fw-semibold">Sunday: Closed</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAP -->
+<section class="py-5">
+  <div class="container">
+    <h2 class="text-center fw-bold mb-4">Find Us on Map</h2>
+    <div class="map-container">
+      <div class="ratio ratio-16x9">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3578.1105863238!2d85.84269987524821!3d26.258074077043496!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39edb37a65d59bd1%3A0x21f9d4e4dfeb5b2c!2sShree%20ram%20Humpty%20Dumpty%20a%20play%20public%20School!5e0!3m2!1sen!2sin!4v1757544881085!5m2!1sen!2sin"
+          style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT FORM -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <h2 class="text-center fw-bold mb-4">Send Us a Message</h2>
+    <form class="contact-form" method="post" action="">
+      {% csrf_token %}
+      <div class="row g-3">
+        <div class="col-md-6">
+          <input name="name" type="text" class="form-control" placeholder="Full Name" required>
+        </div>
+        <div class="col-md-6">
+          <input name="email" type="email" class="form-control" placeholder="Email Address" required>
+        </div>
+        <div class="col-md-6">
+          <input name="phone" type="tel" class="form-control" placeholder="Phone Number" required>
+        </div>
+        <div class="col-md-6">
+          <input name="subject" type="text" class="form-control" placeholder="Subject (optional)">
+        </div>
+        <div class="col-12">
+          <textarea name="message" rows="5" class="form-control" placeholder="Your Message" required></textarea>
+        </div>
+        <div class="col-12 text-center mt-2">
+          <button type="submit" class="btn btn-primary btn-send">Send Message</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+{% endblock %}

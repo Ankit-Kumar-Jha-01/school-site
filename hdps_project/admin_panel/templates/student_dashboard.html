@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block title %}Student{% endblock %}
+
+{% block content %}
+<div class="container my-5 text-center">
+    <h2 class="mb-4 fw-semibold text-dark">👋 Hi there! What would you like to do?</h2>
+
+    <div class="row justify-content-center g-4">
+        <!-- Register Student -->
+        <div class="col-12 col-md-6 col-lg-5">
+            <a href="{% url 'register_student' %}" class="text-decoration-none">
+                <div class="card option-card shadow-sm p-5 rounded-4">
+                    <h4 class="text-primary fw-bold">➕ Register New Student</h4>
+                </div>
+            </a>
+        </div>
+
+        <!-- Update Student -->
+        <div class="col-12 col-md-6 col-lg-5">
+            <a href="{% url 'update_student' %}" class="text-decoration-none">
+                <div class="card option-card shadow-sm p-5 rounded-4">
+                    <h4 class="text-success fw-bold">✏️ Update Existing Student</h4>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<style>
+    body {
+        background: #f8fafc; /* minimal soft background */
+        color: #333;
+        font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    .option-card {
+        background: #ffffff;
+        border: 1px solid #e5e7eb;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+    }
+
+    .option-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        font-size: 1.8rem;
+        color: #111827;
+    }
+
+    h4 {
+        font-size: 1.3rem;
+    }
+
+    @media (max-width: 576px) {
+        h2 {
+            font-size: 1.4rem;
+        }
+        h4 {
+            font-size: 1.1rem;
+        }
+        .option-card {
+            padding: 2rem;
+        }
+    }
+</style>
+{% endblock %}

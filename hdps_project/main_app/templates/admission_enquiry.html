@@ -1,0 +1,296 @@
+{% extends "base.html" %}
+
+{% block title %}Admission enquiry{% endblock %}
+
+{% block content %}
+{% load static %}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admission Procedure | Our School</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .hero {
+            background: url('https://images.unsplash.com/photo-1596495577886-d920f19d2a59?auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgb(89, 76, 76);
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+        }
+        .section-title {
+            font-weight: 700;
+            margin-bottom: 2rem;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            transition: 0.3s;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="text-center">
+            <h1 class="display-4 fw-bold">Admission Procedure</h1>
+            <p class="lead">Guidelines and requirements for enrolling your child</p>
+        </div>
+    </section>
+
+    <!-- Admission Instructions -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="section-title text-center">General Admission Guidelines</h2>
+            <p class="fs-5 mb-4">
+                Admissions are open for all classes based on availability and age eligibility. Parents or guardians 
+                are requested to follow the procedure outlined below to ensure a smooth enrollment process.
+            </p>
+
+            <div class="row g-4">
+                <!-- Step 1 -->
+                <div class="col-md-6">
+                    <div class="card card-hover h-100 shadow-sm border-0 p-4">
+                        <h5 class="text-primary">Application Submission</h5>
+                        <p>Submit the registration form with the required documents, including recent photographs and academic records. Forms can be collected from the school office or downloaded online.</p>
+                    </div>
+                </div>
+                <!-- Step 2 -->
+                <div class="col-md-6">
+                    <div class="card card-hover h-100 shadow-sm border-0 p-4">
+                        <h5 class="text-primary">Eligibility Verification</h5>
+                        <p>Students are admitted based on age criteria, prior academic performance, and the completion of necessary prerequisites for the selected class.</p>
+                    </div>
+                </div>
+                <!-- Step 3 -->
+                <div class="col-md-6">
+                    <div class="card card-hover h-100 shadow-sm border-0 p-4">
+                        <h5 class="text-primary">Orientation & Guidance</h5>
+                        <p>Parents and students are invited to an orientation session to familiarize themselves with school rules, curriculum, and the academic environment.</p>
+                    </div>
+                </div>
+                <!-- Step 4 -->
+                <div class="col-md-6">
+                    <div class="card card-hover h-100 shadow-sm border-0 p-4">
+                        <h5 class="text-primary">Fee & Registration</h5>
+                        <p>All fees and registration formalities should be completed before the commencement of classes. School administration will provide the detailed schedule and fee structure.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rules & Dress Code -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title text-center">Rules & Dress Code</h2>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="card card-hover h-100 shadow-sm border-0 p-4">
+                        <h5 class="text-primary">Student Conduct</h5>
+                        <p>Students are expected to respect teachers, peers, and school property. Participation in school activities, maintaining discipline, and ethical behavior is mandatory.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card card-hover h-100 shadow-sm border-0 p-4">
+                        <h5 class="text-primary">Dress Code</h5>
+                        <p>Students are required to wear the prescribed uniform during school hours. Uniforms should be neat, clean, and appropriate for both regular days and special occasions. Guidelines for winter and sports attire will be provided separately.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guardians Guidelines -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="section-title text-center">Guidelines for Guardians</h2>
+            <ul class="list-group list-group-flush fs-5">
+                <li class="list-group-item">Ensure timely attendance and encourage regular participation in academic and extracurricular activities.</li>
+                <li class="list-group-item">Monitor your child’s progress and provide guidance at home.</li>
+                <li class="list-group-item">All school payments should be made as per the schedule.</li>
+                <li class="list-group-item">Support your child in following school rules, maintaining discipline, and respecting peers and staff.</li>
+                <li class="list-group-item">Communicate with school authorities regarding concerns or suggestions for your child’s growth.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Student Oath & Values -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title text-center">Student Commitment & Values</h2>
+            <ul class="list-group list-group-flush fs-5">
+                <li class="list-group-item">Show respect and courtesy to parents, teachers, and peers.</li>
+                <li class="list-group-item">Strive for honesty, integrity, and responsibility in all actions.</li>
+                <li class="list-group-item">Participate actively in school activities, promoting teamwork, cooperation, and service to the community.</li>
+                <li class="list-group-item">Pursue academic excellence while balancing personal growth and ethical behavior.</li>
+            </ul>
+        </div>
+    </section>
+
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f0f2f5;
+    }
+
+    /* Button */
+    .btn {
+      display: inline-block;
+      background: #007bff;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 6px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .btn:hover {
+      background: #0056b3;
+    }
+
+    /* Overlay */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Modal Content */
+    .modal-content {
+      background: #fff;
+      padding: 20px 30px;
+      border-radius: 12px;
+      width: 80%;
+      max-width: 600px;
+      box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+      animation: fadeIn 0.4s;
+    }
+
+    /* Close button */
+    .close {
+      float: right;
+      font-size: 22px;
+      font-weight: bold;
+      color: #333;
+      cursor: pointer;
+    }
+    .close:hover {
+      color: red;
+    }
+
+    /* Form */
+    .form-row {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 15px;
+      flex-wrap: wrap;
+    }
+
+    .form-row input, .form-row textarea {
+      flex: 1;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+
+    textarea {
+      resize: none;
+      height: 80px;
+    }
+
+    button.submit-btn {
+      width: 100%;
+      padding: 12px;
+      background: #28a745;
+      border: none;
+      border-radius: 6px;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button.submit-btn:hover {
+      background: #218838;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: scale(0.9);}
+      to {opacity: 1; transform: scale(1);}
+    }
+  </style>
+</head>
+<body>
+
+
+<div id="enquiryModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <h2>Admission Enquiry Form</h2>
+    <form>
+      <div class="form-row">
+        <input type="text" placeholder="Full Name" required>
+        <input type="number" placeholder="Age" required>
+      </div>
+
+      <div class="form-row">
+        <input type="text" placeholder="Parents' Name" required>
+        <input type="text" placeholder="Previous School" required>
+      </div>
+
+      <div class="form-row">
+        <input type="email" placeholder="Email" required>
+        <input type="tel" placeholder="Phone Number" required>
+      </div>
+
+      <div class="form-row">
+        <textarea placeholder="Address" required></textarea>
+      </div>
+
+      <div class="form-row">
+        <textarea placeholder="Enquiry Details" required></textarea>
+      </div>
+
+      <button type="submit" class="submit-btn">Submit</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  // Show modal automatically on page load
+  window.onload = function() {
+    document.getElementById("enquiryModal").style.display = "flex";
+  }
+
+  function closeModal() {
+    document.getElementById("enquiryModal").style.display = "none";
+  }
+
+  window.onclick = function(event) {
+    let modal = document.getElementById("enquiryModal");
+    if (event.target === modal) {
+      modal.style.display = "none";
+    }
+  }
+</script>
+
+
+
+{% endblock %}

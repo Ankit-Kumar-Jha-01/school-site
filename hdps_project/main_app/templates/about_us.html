@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+
+{% block title %}About us{% endblock %}
+
+{% block content %}
+{% load static %}
+
+
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .hero {
+            background: url('https://images.unsplash.com/photo-1581091012184-3a0d3a3c35f0?auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgb(78, 65, 65);
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+        }
+        .section-title {
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        .highlight {
+            color: #0d6efd;
+        }
+        .mission-card, .vision-card, .values-card {
+            transition: transform 0.3s;
+        }
+        .mission-card:hover, .vision-card:hover, .values-card:hover {
+            transform: translateY(-10px);
+        }
+    </style>
+</head>
+<body>
+   
+    
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="text-center">
+            <h1 class="display-4 fw-bold">About Our School</h1>
+            <p class="lead">Empowering students to achieve excellence and grow as responsible individuals</p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="section-title text-center">Who We Are</h2>
+            <p class="text-center fs-5 mb-5">
+                Our School is a place where every student is encouraged to explore, learn, and thrive. 
+                We are committed to providing a nurturing environment that fosters academic excellence, 
+                creative thinking, and social responsibility. Our dedicated faculty and modern facilities 
+                ensure that every learner receives personalized attention and the tools needed for success.
+            </p>
+
+            <div class="row g-4">
+                <!-- Mission -->
+                <div class="col-md-4">
+                    <div class="card mission-card h-100 shadow-sm border-0">
+                        <div class="card-body text-center">
+                            <h5 class="card-title highlight">Our Mission</h5>
+                            <p class="card-text">
+                                To empower students with knowledge, skills, and values to succeed academically and socially, 
+                                while fostering a lifelong love of learning.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Vision -->
+                <div class="col-md-4">
+                    <div class="card vision-card h-100 shadow-sm border-0">
+                        <div class="card-body text-center">
+                            <h5 class="card-title highlight">Our Vision</h5>
+                            <p class="card-text">
+                                To be a center of excellence that inspires creativity, innovation, and ethical leadership 
+                                in every student.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Values -->
+                <div class="col-md-4">
+                    <div class="card values-card h-100 shadow-sm border-0">
+                        <div class="card-body text-center">
+                            <h5 class="card-title highlight">Our Values</h5>
+                            <p class="card-text">
+                                Integrity, Respect, Curiosity, Collaboration, and Responsibility guide all our actions 
+                                to create a positive learning community.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features / Highlights Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title text-center mb-5">What Makes Us Unique</h2>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="p-4 bg-white rounded shadow-sm">
+                        <h5 class="highlight">Innovative Curriculum</h5>
+                        <p>
+                            Our curriculum integrates modern teaching methods, technology, and hands-on experiences 
+                            to make learning engaging and effective.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="p-4 bg-white rounded shadow-sm">
+                        <h5 class="highlight">Experienced Faculty</h5>
+                        <p>
+                            Our teachers are highly qualified, passionate, and committed to guiding students toward 
+                            their fullest potential.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="p-4 bg-white rounded shadow-sm">
+                        <h5 class="highlight">Modern Facilities</h5>
+                        <p>
+                            Well-equipped labs, libraries, sports facilities, and creative spaces encourage 
+                            exploration and discovery.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="p-4 bg-white rounded shadow-sm">
+                        <h5 class="highlight">Holistic Development</h5>
+                        <p>
+                            We focus on academic, social, emotional, and physical growth, preparing students 
+                            to succeed in all aspects of life.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bootstrap JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+
+
+{% endblock %}

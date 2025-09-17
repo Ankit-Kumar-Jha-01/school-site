@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Gallery{% endblock %}
+{% block content %}
+<h2 style="text-align:center; margin-bottom:20px;">Gallery</h2>
+
+<div style="display:flex; flex-wrap:wrap; gap:20px; justify-content:center;">
+  {% for img in images %}
+    <div style="border:1px solid #ccc; padding:10px; border-radius:8px; max-width:220px; text-align:center;">
+      <img src="{{ img.image.url }}" alt="Gallery Image" style="max-width:200px; border-radius:8px;">
+    </div>
+  {% empty %}
+    <p>No images uploaded yet.</p>
+  {% endfor %}
+</div>
+{% endblock %}

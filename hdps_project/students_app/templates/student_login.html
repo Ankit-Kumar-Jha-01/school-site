@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Login</title>
+  <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    body {
+      height: 100vh; /* fixed height, no extra scroll */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #fdfbfb, #ebedee);
+      overflow: hidden; /* prevents unwanted scrollbar */
+    }
+
+    .login-box {
+      background: #fff;
+      padding: 35px 30px;
+      border-radius: 16px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 380px;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .login-box:hover {
+      transform: translateY(-5px);
+    }
+
+    .login-box h2 {
+      margin-bottom: 20px;
+      font-size: 24px;
+      color: #333;
+      font-weight: 600;
+    }
+
+    .login-box input {
+      margin: 10px 0;
+      padding: 12px 14px;
+      width: 100%;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      font-size: 15px;
+      transition: border-color 0.3s;
+    }
+
+    .login-box input:focus {
+      border-color: #2575fc;
+      outline: none;
+      box-shadow: 0 0 6px rgba(37, 117, 252, 0.3);
+    }
+
+    .login-box button {
+      margin-top: 15px;
+      padding: 12px;
+      width: 100%;
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .login-box button:hover {
+      background: linear-gradient(135deg, #2575fc, #6a11cb);
+      transform: scale(1.03);
+    }
+
+    .error {
+      color: #d9534f;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      .login-box {
+        padding: 25px 20px;
+      }
+      .login-box h2 {
+        font-size: 20px;
+      }
+      .login-box input,
+      .login-box button {
+        font-size: 14px;
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="login-box">
+    <h2>Student Login</h2>
+    {% if error %}
+      <p class="error">{{ error }}</p>
+    {% endif %}
+    <form method="POST">
+      {% csrf_token %}
+      <input type="text" name="erp" placeholder="Enter ERP ID" required>
+      <input type="password" name="password" placeholder="Enter Password" required>
+      <button type="submit">Login</button>
+    </form>
+  </div>
+</body>
+</html>

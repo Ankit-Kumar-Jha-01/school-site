@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Website{% endblock %}</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f9f9f9;
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #404851;
+      padding: 10px 20px;
+      position: relative;
+      z-index: 1000;
+    }
+
+    .navbar img {
+      height: 50px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #ffcc00;
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      font-size: 26px;
+      cursor: pointer;
+      color: white;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 65px;
+        right: 20px;
+        background: rgba(64,72,81,0.95);
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        z-index: 1001;
+      }
+      .nav-links.active {
+        display: flex;
+      }
+      .hamburger {
+        display: block;
+      }
+    }
+
+    /* Footer */
+    footer {
+      background: #404851;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  
+  <!-- Navbar -->
+  <header class="navbar">
+    <a href="{% url 'home' %}">
+      <img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png" alt="School Logo">
+    </a>
+    <div class="hamburger" id="hamburger">☰</div>
+    <nav class="nav-links" id="nav-links">
+      <a href="{% url 'home' %}">Home</a>
+      <a href="{% url 'about_us' %}">About</a>
+      <a href="{% url 'admission_enquiry' %}">Admission enquiry</a>
+      <a href="https://www.youtube.com/@shreeramhumptydumptyaplayp4538">YouTube</a>
+      <a href="{% url 'login' %}">Admin</a>
+      <a href="{% url 'contact_us' %}">Contact</a>
+    </nav>
+  </header>
+
+  {% block content %}{% endblock %}
+
+  <footer>
+    <p>DESIGNED AND DEVELOPED BY @ ANKIT KUMAR JHA</p>
+  </footer>
+
+  <script>
+    const hamburger = document.getElementById("hamburger");
+    const navLinks = document.getElementById("nav-links");
+
+    // Toggle menu
+    hamburger.addEventListener("click", (e) => {
+      e.stopPropagation(); // prevent closing immediately
+      navLinks.classList.toggle("active");
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener("click", (e) => {
+      if (navLinks.classList.contains("active") && !navLinks.contains(e.target) && e.target !== hamburger) {
+        navLinks.classList.remove("active");
+      }
+    });
+
+    // Close menu after clicking a link
+    navLinks.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("active");
+      });
+    });
+  </script>
+</body>
+</html>

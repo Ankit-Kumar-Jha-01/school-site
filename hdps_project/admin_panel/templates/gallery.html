@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Gallery Management{% endblock %}
+
+{% block content %}
+<h2 style="text-align:center; margin-bottom:20px;">Manage Gallery</h2>
+
+<!-- Upload Form -->
+<div style="text-align:center; margin-bottom:30px;">
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="image" accept="image/*" required>
+    <button type="submit" style="padding:8px 16px; background:#2575fc; color:white; border:none; border-radius:6px; cursor:pointer;">
+      Add Image
+    </button>
+  </form>
+</div>
+
+<!-- Gallery Images -->
+<div style="display:flex; flex-wrap:wrap; gap:20px; justify-content:center;">
+  {% for img in images %}
+    <div style="border:1px solid #ccc; padding:10px; border-radius:8px; text-align:center; max-width:220px;">
+      <img src="{{ img.image.url }}" alt="Gallery Image" style="max-width:200px; border-radius:8px; margin-bottom:10px;"><br>
+      <a href="{% url 'delete_image' img.id %}" style="color:white; background:red; padding:6px 12px; border-radius:6px; text-decoration:none;">
+        Delete
+      </a>
+    </div>
+  {% empty %}
+    <p>No images in gallery yet.</p>
+  {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+
+{% block title %}Fees Entry{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <h2 class="mb-4 text-center text-primary fw-bold">💰 Student Fees Entry</h2>
+
+    {% if error %}
+        <p class="text-danger fw-semibold text-center">{{ error }}</p>
+    {% endif %}
+
+    <!-- ERP Form -->
+    <form method="post" class="card shadow-sm p-4 rounded-4 mb-4">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="erp" class="form-label fw-bold">Student ERP</label>
+            <input type="text" class="form-control rounded-3" name="erp" id="erp" placeholder="Enter ERP Number" required>
+        </div>
+        <button type="submit" class="btn btn-primary w-100 rounded-3">Fetch Student</button>
+    </form>
+
+    {% if months %}
+        <div class="card shadow-sm p-4 rounded-4">
+            <h4 class="mb-3 text-secondary">Enter Fees for Each Month</h4>
+            <form method="post">
+                {% csrf_token %}
+                <input type="hidden" name="erp" value="{{ request.POST.erp }}">
+
+                <!-- Responsive Table -->
+                <div class="table-container">
+                    <table class="table table-bordered align-middle text-center w-100">
+                        <thead class="table-light sticky-top">
+                            <tr>
+                                <th>Month</th>
+                                <th>Tuition</th>
+                                <th>Admission</th>
+                                <th>Exam</th>
+                                <th>Library</th>
+                                <th>Lab</th>
+                                <th>Sports</th>
+                                <th>Computer</th>
+                                <th>Development</th>
+                                <th>Smart Class</th>
+                                <th>ID Card</th>
+                                <th>Annual Day</th>
+                                <th>Transport</th>
+                                <th>Caution</th>
+                                <th>Fine</th>
+                                <th>Misc</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for month in months %}
+                                <tr>
+                                    <td class="fw-bold">{{ month.month_name }}</td>
+                                    <td><input type="number" name="tuition_fee_{{ month.id }}" class="form-control form-control-sm" value="0"></td>
+                                    <td><input type="number" name="admission_fee_{{ month.id }}" class="form-control form-control-sm" value="0"></td>
+                                    <td><input type="number" name="exam_fee_{{ month.id }}" class="form-control form-control-sm" value="0"></td>
+                                    <td><input type="number" name="library_fee_{{ month.id }}" class="form-control form-control-sm" value="0"></td>
+                                    <td><input type="number" name="lab_fee_{{ month.id }}" class="form-control form-control-sm" value="0"></td>
+                                    <td><input type="number" name="sports_fee_{{ month.id }}" class="form-control form-control-sm" value="0"></td>
+                                    <td><input type="number" name="computer_fee_{{ month.id }}" class="form-control form-control-sm" value="0"></td>
+                                    <td><input type="number" name="development_fee_{{ month.id }}" class="form-control form-control-sm" value="0"></td>
+                                    <td><input type="number" name="smart_class_fee_{{ month.id }}" class="form-control form-control-sm" value="0"></td>
+                                    <td><input type="number" name="identity_card_fee_{{ month.id }}" class="form-control form-control-sm" value="0"></td>
+                                    <td><input type="number" name="annual_day_fee_{{ month.id }}" class="form-control form-control-sm" value="0"></td>
+                                    <td><input type="number" name="transportation_fee_{{ month.id }}" class="form-control form-control-sm" value="0"></td>
+                                    <td><input type="number" name="caution_money_{{ month.id }}" class="form-control form-control-sm" value="0"></td>
+                                    <td><input type="number" name="fine_{{ month.id }}" class="form-control form-control-sm" value="0"></td>
+                                    <td><input type="number" name="misc_fee_{{ month.id }}" class="form-control form-control-sm" value="0"></td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="text-center mt-3">
+                    <button type="submit" name="submit_fees" class="btn btn-success px-4 rounded-3 shadow-sm">
+                        ✅ Submit Fees
+                    </button>
+                </div>
+            </form>
+        </div>
+    {% endif %}
+
+    {% if success %}
+        <p class="text-success fw-semibold text-center mt-3">{{ success }}</p>
+    {% endif %}
+    {% if error %}
+        <p class="text-success fw-semibold text-center mt-3">{{ error }}</p>
+    {% endif %}
+</div>
+
+<style>
+    /* Scroll only on small screens */
+    .table-container {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    table {
+        table-layout: auto;
+    }
+
+    /* Large screens: table shrinks instead of scrolling */
+    @media (min-width: 992px) {
+        table th, table td {
+            font-size: 0.85rem;
+            padding: 6px;
+        }
+        input[type="number"] {
+            width: 87px;
+        }
+    }
+
+    /* Small screens: scroll with compact inputs */
+    @media (max-width: 768px) {
+        h2 {
+            font-size: 1.5rem;
+        }
+        table th, table td {
+            font-size: 0.75rem;
+            padding: 4px;
+        }
+        input[type="number"] {
+            width: 65px;
+        }
+    }
+</style>
+{% endblock %}

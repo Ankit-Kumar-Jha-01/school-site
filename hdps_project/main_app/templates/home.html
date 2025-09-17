@@ -1,0 +1,204 @@
+{% extends "base.html" %}
+
+{% block title %}HDPS{% endblock %}
+
+{% block content %}
+{% load static %}
+
+<style>
+  /* Slider */
+  .slider {
+    position: relative;
+    width: 100%;
+    height: 90vh;
+    overflow: hidden;
+  }
+  .slides {
+    display: flex;
+    width: 400%;
+    animation: slide 20s infinite;
+  }
+  .slides img {
+    width: 100%;
+    height: 90vh;
+    object-fit: cover;
+    filter: brightness(75%);
+  }
+  @keyframes slide {
+    0%, 20% { margin-left: 0; }
+    25%, 45% { margin-left: -100%; }
+    50%, 70% { margin-left: -200%; }
+    75%, 95% { margin-left: -300%; }
+    100% { margin-left: 0; }
+  }
+
+  /* Portal Row (Links + Student + Teacher + Gallery) */
+  .portal-section {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns on large screens */
+    gap: 30px;
+    margin: 40px auto;
+    padding: 0 20px;
+  }
+
+  /* Login Box */
+  .login-box {
+    background: rgba(255, 255, 255, 0.75);
+    padding: 25px 30px;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    transition: 0.3s ease-in-out;
+  }
+  .login-box:hover {
+    transform: translateY(-5px) scale(1.02);
+  }
+  .login-box h3 {
+    margin-bottom: 20px;
+    font-size: 20px;
+    color: #2d3436;
+    font-weight: 600;
+  }
+  .login-btn {
+    display: inline-block;
+    padding: 12px 24px;
+    font-size: 15px;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    width: 100%;
+    max-width: 180px;
+  }
+  .login-btn:hover {
+    background: linear-gradient(135deg, #2575fc, #6a11cb);
+    transform: scale(1.05);
+  }
+
+  /* Important Links */
+  .links-section h2 {
+    font-size: 20px;
+    margin-bottom: 12px;
+    text-align: center;
+  }
+  .links-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .links-list a {
+    padding: 10px 15px;
+    background: #f8f9fa;
+    border-left: 5px solid #2575fc;
+    border-radius: 6px;
+    font-size: 15px;
+    text-decoration: none;
+    color: #2d3436;
+    font-weight: 500;
+    transition: 0.3s;
+  }
+  .links-list a:hover {
+    background: #eef2ff;
+    color: #2575fc;
+    transform: translateX(5px);
+  }
+
+  /* Gallery */
+  .gallery-section {
+    text-align: center;
+  }
+  .gallery-section h2 {
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+  .gallery-preview {
+    width: 100%;
+    max-width: 220px;
+    margin: auto;
+  }
+  .gallery-preview img {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  .gallery-preview img:hover {
+    transform: scale(1.03);
+  }
+
+  /* Responsive Breakpoints */
+  @media (max-width: 992px) {
+    .portal-section {
+      grid-template-columns: repeat(2, 1fr); /* 2 items per row on tablets */
+    }
+  }
+  @media (max-width: 600px) {
+    .portal-section {
+      grid-template-columns: 1fr; /* 1 item per row on mobile */
+    }
+  }
+</style>
+
+<!-- Image Slider -->
+<section class="slider">
+  <div class="slides">
+    <img src="{% static 'images/in1.jpg' %}" alt="Slide 1">
+    <img src="{% static 'images/out1.jpg' %}" alt="Slide 2">
+    <img src="{% static 'images/pool1.jpg' %}" alt="Slide 3">
+    <img src="{% static 'images/pool2.jpg' %}" alt="Slide 4"> 
+  </div>
+</section>
+
+<!-- Portal Section (Links + Student + Teacher + Gallery) -->
+<section class="portal-section">
+  
+  <!-- Left: Links -->
+  <div class="links-section">
+    <h2>Important Links</h2>
+    <div class="links-list">
+      <a href="#">📌 Admission Form</a>
+      <a href="#">📌 Exam Schedule</a>
+      <a href="#">📌 Annual Function</a>
+      <a href="#">📌 Latest Circulars</a>
+    </div>
+  </div>
+
+  <!-- Middle: Student Portal -->
+  <div class="login-box">
+    <h3>Welcome to Student Portal</h3>
+    <a href="{% url 'students_login' %}" class="login-btn">Go to Login</a>
+  </div>
+
+  <!-- Middle: Teacher Portal -->
+  <div class="login-box">
+    <h3>Welcome to Teacher Portal</h3>
+    <a href="#" class="login-btn">Go to Login</a>
+  </div>
+
+<!-- Right: Gallery -->
+<div class="gallery-section">
+  <h2>Gallery</h2>
+  <div class="gallery-preview">
+    {% if images %}
+      <a href="{% url 'public_gallery' %}">
+        <img src="{{ images.0.image.url }}" alt="Gallery Preview">
+      </a>
+    {% else %}
+      <a href="{% url 'public_gallery' %}">
+        <img src="{% static 'images/in1.jpg' %}" alt="Default Gallery">
+      </a>
+    {% endif %}
+  </div>
+</div>
+
+
+
+</section>
+
+
+
+{% endblock %}
