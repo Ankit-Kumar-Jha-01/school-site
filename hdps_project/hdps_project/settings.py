@@ -11,6 +11,11 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='').split(',')
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://school-site-cxuo.onrender.com",
+    "https://humptydumpty.co.in",
+    "https://www.humptydumpty.co.in"
+]
 
 
 INSTALLED_APPS = [
