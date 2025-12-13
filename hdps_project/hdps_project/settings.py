@@ -1,6 +1,6 @@
 from pathlib import Path
 import os
-from decouple import config  
+from decouple import config
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -8,9 +8,7 @@ SECRET_KEY = config('SECRET_KEY', default='unsafe-secret-key')
 
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-# In settings.py, update ALLOWED_HOSTS parsing:
-ALLOWED_HOSTS_STR = config('ALLOWED_HOSTS', default='')
-ALLOWED_HOSTS = [host.strip() for host in ALLOWED_HOSTS_STR.split(',') if host.strip()]
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='').split(',')
 
 CSRF_TRUSTED_ORIGINS = [
     "https://school-site-cxuo.onrender.com",
