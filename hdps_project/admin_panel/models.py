@@ -1,15 +1,12 @@
 from django.db import models
 from django.contrib.auth.hashers import make_password
 
-# Create your models here.
 class Class(models.Model):
     class_id = models.AutoField(primary_key=True)
     class_name = models.CharField(max_length=10)
 
     def __str__(self):
         return f"{self.class_name} "
-
-
 
 class Student(models.Model):
     erp = models.CharField(max_length=20, primary_key=True)
@@ -23,7 +20,7 @@ class Student(models.Model):
     contact_number = models.CharField(max_length=15)
     email = models.CharField(max_length=100)
     admission_date = models.DateField()
-    password = models.CharField(max_length=128)  # store hash, not plain text
+    password = models.CharField(max_length=128)  
 
     def set_password(self, raw_password):
         self.password = make_password(raw_password)
@@ -54,10 +51,6 @@ class StudentFees(models.Model):
     id = models.AutoField(primary_key=True)
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     month = models.ForeignKey(Months, on_delete=models.CASCADE) 
-    # month = models.CharField(max_length=20)
-    # year = models.CharField(max_length=10)
-
-    # Replacing fee1 to fee15 with meaningful fee components
     tuition_fee = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     admission_fee = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     exam_fee = models.DecimalField(max_digits=10, decimal_places=2, default=0)

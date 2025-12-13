@@ -2,25 +2,29 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from admin_panel.models import Student, StudentFees
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.hashers import check_password
 
-@login_required
+
 def students_login(request):
     if request.method == "POST":
         erp = request.POST.get("erp")
         password = request.POST.get("password")
 
         try:
-            student = Student.objects.get(erp=erp, password=password)
-            # Fetch fees for this student
-            fees = StudentFees.objects.filter(student=student)
-            return render(request, "student_profile.html", {
-                "student": student,
-                "fees": fees
-            })
+            student = Student.objects.get(erp=erp)
+            if check_password(password, student.password):  # check hashed password
+                fees = StudentFees.objects.filter(student=student)
+                return render(request, "student_profile.html", {
+                    "student": student,
+                    "fees": fees
+                })
+            else:
+                return render(request, "student_login.html", {"error": "Invalid ERP or Password"})
         except Student.DoesNotExist:
             return render(request, "student_login.html", {"error": "Invalid ERP or Password"})
 
     return render(request, "student_login.html")
+
 
 
 def student_profile(request, erp):

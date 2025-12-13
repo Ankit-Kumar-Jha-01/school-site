@@ -1,5 +1,3 @@
-
-
 from pathlib import Path
 import os
 from decouple import config  
@@ -8,8 +6,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = config('SECRET_KEY', default='unsafe-secret-key')
 
-# Debug mode - keep True locally, set False on server
-DEBUG = config('DEBUG', default=True, cast=bool)
+DEBUG = config('DEBUG', default=False, cast=bool)
+
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='').split(',')
 

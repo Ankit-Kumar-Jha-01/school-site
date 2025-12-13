@@ -6,13 +6,10 @@ venv/
 ENV/
 .venv/
 
-# Django
 db.sqlite3
 /media/
 
-# VS Code / IDE
 .vscode/
 .idea/
 
-# Env files
 .env
