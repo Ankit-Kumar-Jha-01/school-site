@@ -1,1 +1,1 @@
-web: gunicorn hdps_project.hdps_project.wsgi:application
+web: gunicorn hdps_project.wsgi:application
