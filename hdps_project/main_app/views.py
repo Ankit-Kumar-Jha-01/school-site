@@ -6,7 +6,7 @@ from django.shortcuts import render
 from admin_panel.models import GalleryImage
 
 def home(request):
-    images = GalleryImage.objects.all().order_by('-uploaded_at')[:6]  # latest 6 images
+    images = GalleryImage.objects.all().order_by('-uploaded_at')[:6]  
     return render(request, 'home.html', {'images': images})
 
 def public_gallery(request):

@@ -6,7 +6,7 @@
 {% block content %}
 <h2 style="text-align:center; margin-bottom:20px;">Manage Gallery</h2>
 
-<!-- Upload Form -->
+
 <div style="text-align:center; margin-bottom:30px;">
   <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
@@ -17,7 +17,7 @@
   </form>
 </div>
 
-<!-- Gallery Images -->
+
 <div style="display:flex; flex-wrap:wrap; gap:20px; justify-content:center;">
   {% for img in images %}
     <div style="border:1px solid #ccc; padding:10px; border-radius:8px; text-align:center; max-width:220px;">

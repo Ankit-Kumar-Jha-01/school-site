@@ -1,189 +1,214 @@
 {% extends "base.html" %}
 
-{% block title %}Contact Us{% endblock %}
+{% block title %}Contact Us | HDPS{% endblock %}
 
 {% block content %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
 <style>
-/* Hero section */
-.hero {
-  background: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
-  min-height: 320px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  margin-bottom: 2rem;
-}
-.hero-inner {
-  background: rgba(0,0,0,0.4);
-  padding: 36px 24px;
-  border-radius: 14px;
-  max-width: 900px;
-  width: 100%;
-  text-align: center;
+.contact-hero {
+    background: linear-gradient(rgba(30, 39, 46, 0.7), rgba(30, 39, 46, 0.7)), 
+                url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
+    height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-align: center;
+    clip-path: ellipse(150% 100% at 50% 0%);
 }
 
-/* Contact info cards */
+.info-wrapper {
+    margin-top: -80px; 
+    position: relative;
+    z-index: 10;
+}
+
 .contact-card {
-  background: #fff;
-  border-radius: 12px;
-  padding: 28px 22px;
-  min-height: 160px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: #fff;
+    border: none;
+    border-radius: 20px;
+    padding: 35px 25px;
+    height: 100%;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
 }
-.contact-card .icon {
-  font-size: 2rem;
-  margin-bottom: 10px;
-}
+
 .contact-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 24px rgba(0,0,0,0.15);
+    transform: translateY(-12px);
+    box-shadow: 0 15px 45px rgba(37, 117, 252, 0.2);
+    background: linear-gradient(145deg, #ffffff, #f0f4ff);
 }
 
-/* Office hours */
-.office-hours {
-  max-width: 650px;
-  margin: 0 auto;
-}
-.office-hours .card {
-  border-radius: 14px;
-}
-
-/* Map container */
-.map-container {
-  max-width: 1000px;
-  margin: 0 auto;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 8px 28px rgba(0,0,0,0.12);
+.icon-circle {
+    width: 70px;
+    height: 70px;
+    background: #f1f4f9;
+    color: #2575fc;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    margin: 0 auto 20px;
+    transition: 0.3s;
 }
 
-/* Contact form */
-.contact-form {
-  max-width: 800px;
-  margin: 0 auto;
-  background: #fff;
-  border-radius: 12px;
-  padding: 24px;
-  box-shadow: 0 8px 28px rgba(0,0,0,0.1);
+.contact-card:hover .icon-circle {
+    background: #2575fc;
+    color: #fff;
+    transform: rotateY(360deg);
 }
+
+.glass-panel {
+    background: #fff;
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+}
+
+.form-side { padding: 40px; }
+.map-side { min-height: 400px; }
+
+.form-floating > .form-control:focus, 
+.form-floating > .form-control:not(:placeholder-shown) {
+    padding-top: 1.625rem;
+    padding-bottom: 0.625rem;
+}
+
+.form-control {
+    border-radius: 12px;
+    border: 2px solid #eee;
+    padding: 12px 15px;
+    transition: 0.3s;
+}
+
+.form-control:focus {
+    border-color: #2575fc;
+    box-shadow: none;
+    background-color: #f8fbff;
+}
+
 .btn-send {
-  border-radius: 999px;
-  padding: 10px 36px;
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    border: none;
+    padding: 14px 40px;
+    border-radius: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: 0.3s;
 }
 
-/* Responsive tweaks */
-@media (max-width: 768px) {
-  .hero { min-height: 220px; }
-  .hero-inner { padding: 22px 16px; }
-  .contact-card { padding: 18px; }
-  .contact-form { padding: 18px; }
+.btn-send:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(37, 117, 252, 0.4);
+}
+
+.hours-badge {
+    background: #eef2f7;
+    border-radius: 50px;
+    padding: 10px 25px;
+    display: inline-block;
+    font-weight: 500;
+    margin: 5px;
+    transition: 0.3s;
+}
+.hours-badge:hover { background: #2575fc; color: #fff; }
+
+@media (max-width: 992px) {
+    .info-wrapper { margin-top: -50px; }
+    .map-side { height: 300px; }
 }
 </style>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-inner mx-auto">
-    <h1 class="display-6 fw-bold mb-2">Get in Touch</h1>
-    <p class="lead mb-0">Questions, suggestions or admissions — we’re here to help.</p>
-  </div>
+<section class="contact-hero">
+    <div class="container">
+        <h1 class="display-4 fw-bold">Let's Connect</h1>
+        <p class="lead">We're here to answer any questions you may have about HDPS.</p>
+    </div>
 </section>
 
-<!-- CONTACT INFO -->
-<section class="py-5">
-  <div class="container">
+<section class="info-wrapper container">
     <div class="row g-4 justify-content-center">
-      <div class="col-12 col-sm-6 col-md-4">
-        <div class="contact-card shadow-sm">
-          <div class="icon">📍</div>
-          <h5 class="fw-semibold">Address</h5>
-          <p class="mb-0">123 Education Lane<br>Your City, State - 000000</p>
+        <div class="col-md-4">
+            <div class="contact-card text-center">
+                <div class="icon-circle"><i class="fa-solid fa-location-dot"></i></div>
+                <h5 class="fw-bold">Visit Us</h5>
+                <p class="text-muted">123 Education Lane, Knowledge Park,<br>Greater Noida, UP - 201310</p>
+                <a href="#map" class="text-primary text-decoration-none fw-semibold">Get Directions →</a>
+            </div>
         </div>
-      </div>
-
-      <div class="col-12 col-sm-6 col-md-4">
-        <div class="contact-card shadow-sm">
-          <div class="icon">📞</div>
-          <h5 class="fw-semibold">Call Us</h5>
-          <p class="mb-0">+91 12345 67890<br>+91 98765 43210</p>
+        <div class="col-md-4">
+            <div class="contact-card text-center">
+                <div class="icon-circle"><i class="fa-solid fa-phone-volume"></i></div>
+                <h5 class="fw-bold">Call Anytime</h5>
+                <p class="text-muted">General: +91 12345 67890<br>Office: +91 98765 43210</p>
+                <a href="tel:+911234567890" class="text-primary text-decoration-none fw-semibold">Call Now →</a>
+            </div>
         </div>
-      </div>
-
-      <div class="col-12 col-sm-6 col-md-4">
-        <div class="contact-card shadow-sm">
-          <div class="icon">📧</div>
-          <h5 class="fw-semibold">Email</h5>
-          <p class="mb-0">info@yourschool.com<br>admissions@yourschool.com</p>
+        <div class="col-md-4">
+            <div class="contact-card text-center">
+                <div class="icon-circle"><i class="fa-solid fa-envelope-open-text"></i></div>
+                <h5 class="fw-bold">Email Us</h5>
+                <p class="text-muted">info@hdpsschool.com<br>admissions@hdpsschool.com</p>
+                <a href="mailto:info@hdpsschool.com" class="text-primary text-decoration-none fw-semibold">Write Email →</a>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </section>
 
-<!-- OFFICE HOURS -->
-<section class="py-5 bg-light">
-  <div class="container">
-    <h2 class="text-center fw-bold mb-4">Office Hours</h2>
-    <div class="office-hours">
-      <div class="card shadow-sm border-0">
-        <div class="card-body p-4 text-center">
-          <ul class="list-unstyled fs-5 mb-0">
-            <li class="mb-2">Monday – Friday: 9:00 AM – 4:00 PM</li>
-            <li class="mb-2">Saturday: 9:00 AM – 1:00 PM</li>
-            <li class="mb-0 text-danger fw-semibold">Sunday: Closed</li>
-          </ul>
-        </div>
-      </div>
+<section class="py-5 mt-4">
+    <div class="container text-center">
+        <h3 class="fw-bold mb-4">Office Hours</h3>
+        <div class="hours-badge">Mon - Fri: 9AM - 4PM</div>
+        <div class="hours-badge">Sat: 9AM - 1PM</div>
+        <div class="hours-badge text-danger">Sun: Closed</div>
     </div>
-  </div>
 </section>
 
-<!-- MAP -->
-<section class="py-5">
-  <div class="container">
-    <h2 class="text-center fw-bold mb-4">Find Us on Map</h2>
-    <div class="map-container">
-      <div class="ratio ratio-16x9">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3578.1105863238!2d85.84269987524821!3d26.258074077043496!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39edb37a65d59bd1%3A0x21f9d4e4dfeb5b2c!2sShree%20ram%20Humpty%20Dumpty%20a%20play%20public%20School!5e0!3m2!1sen!2sin!4v1757544881085!5m2!1sen!2sin"
-          style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-      </div>
+<section class="py-5" id="map">
+    <div class="container">
+        <div class="glass-panel">
+            <div class="row g-0">
+                <div class="col-lg-6 map-side">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3507.234123456!2d77.491234567!3d28.471234567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjjCsDI4JzE2LjQiTiA3N8KwMjknMjguNCJF!5e0!3m2!1sen!2sin!4v1620000000000!5m2!1sen!2sin" 
+                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+                <div class="col-lg-6 form-side">
+                    <h3 class="fw-bold mb-2">Send us a Message</h3>
+                    <p class="text-muted mb-4">Have a specific inquiry? Fill out the form below.</p>
+                    
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="row g-3">
+                            <div class="col-md-6 form-floating">
+                                <input type="text" name="name" class="form-control" id="name" placeholder="Name" required>
+                                <label for="name" class="ms-2">Full Name</label>
+                            </div>
+                            <div class="col-md-6 form-floating">
+                                <input type="email" name="email" class="form-control" id="email" placeholder="Email" required>
+                                <label for="email" class="ms-2">Email Address</label>
+                            </div>
+                            <div class="col-md-12 form-floating">
+                                <input type="tel" name="phone" class="form-control" id="phone" placeholder="Phone" required>
+                                <label for="phone" class="ms-2">Phone Number</label>
+                            </div>
+                            <div class="col-12 form-floating">
+                                <textarea name="message" class="form-control" id="message" placeholder="Message" style="height: 120px" required></textarea>
+                                <label for="message" class="ms-2">How can we help you?</label>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary btn-send w-100 text-white">
+                                    SEND MESSAGE <i class="fa-solid fa-paper-plane ms-2"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </section>
 
-<!-- CONTACT FORM -->
-<section class="py-5 bg-light">
-  <div class="container">
-    <h2 class="text-center fw-bold mb-4">Send Us a Message</h2>
-    <form class="contact-form" method="post" action="">
-      {% csrf_token %}
-      <div class="row g-3">
-        <div class="col-md-6">
-          <input name="name" type="text" class="form-control" placeholder="Full Name" required>
-        </div>
-        <div class="col-md-6">
-          <input name="email" type="email" class="form-control" placeholder="Email Address" required>
-        </div>
-        <div class="col-md-6">
-          <input name="phone" type="tel" class="form-control" placeholder="Phone Number" required>
-        </div>
-        <div class="col-md-6">
-          <input name="subject" type="text" class="form-control" placeholder="Subject (optional)">
-        </div>
-        <div class="col-12">
-          <textarea name="message" rows="5" class="form-control" placeholder="Your Message" required></textarea>
-        </div>
-        <div class="col-12 text-center mt-2">
-          <button type="submit" class="btn btn-primary btn-send">Send Message</button>
-        </div>
-      </div>
-    </form>
-  </div>
-</section>
 {% endblock %}

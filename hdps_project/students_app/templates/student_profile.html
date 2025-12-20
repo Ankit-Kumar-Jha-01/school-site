@@ -11,12 +11,12 @@
     font-family: "Segoe UI", Arial, sans-serif;
   }
 
-  /* Printable wrapper */
+ 
   .printable-area {
     width: 100%;
   }
 
-  /* Profile Card */
+
   .profile {
     background: #fff;
     padding: 25px 30px;
@@ -33,7 +33,7 @@
     text-align: center;
   }
 
-  /* Info Grid */
+  
   .info-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -52,7 +52,7 @@
     margin-right: 6px;
   }
 
-  /* Fees Section */
+
   h3 {
     text-align: center;
     font-size: 20px;
@@ -94,7 +94,7 @@
     background: #f9fafc;
   }
 
-  /* Print Button */
+
   .print-btn {
     display: block;
     margin: 30px auto;
@@ -113,14 +113,13 @@
     background: #1d4ed8;
   }
 
-  /* --- PRINT MODE FIX --- */
   @media print {
     body * {
-      visibility: hidden; /* hide everything by default */
+      visibility: hidden; 
     }
 
     .printable-area, .printable-area * {
-      visibility: visible; /* show only printable area */
+      visibility: visible; 
     }
 
     .printable-area {
@@ -131,7 +130,7 @@
     }
 
     .fees-table-container {
-      overflow: visible !important;   /* show full table */
+      overflow: visible !important;  
     }
 
     table {
@@ -152,7 +151,6 @@
 </style>
 
 <div class="printable-area">
-  <!-- Student Profile -->
   <div class="profile">
     <h2>Welcome, {{ student.first_name }} {{ student.last_name }}</h2>
     <div class="info-grid">
@@ -167,7 +165,6 @@
     </div>
   </div>
 
-  <!-- Fees Records -->
   <h3>Fees Records</h3>
   <div class="fees-table-container">
     {% if fees %}
@@ -220,7 +217,6 @@
     {% endif %}
   </div>
 
-  <!-- Print Button -->
   <button class="print-btn" onclick="window.print()">🖨️ Print This Page</button>
 </div>
 <a href="{% url 'students_logout' %}" class="btn btn-danger">Logout</a>

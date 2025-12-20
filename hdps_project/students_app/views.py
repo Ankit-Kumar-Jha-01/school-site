@@ -12,7 +12,7 @@ def students_login(request):
 
         try:
             student = Student.objects.get(erp=erp)
-            if check_password(password, student.password):  # check hashed password
+            if check_password(password, student.password):  
                 fees = StudentFees.objects.filter(student=student)
                 return render(request, "student_profile.html", {
                     "student": student,
@@ -46,5 +46,5 @@ def students_logout(request):
     """
     Logs out the currently logged-in user and redirects to the login page.
     """
-    logout(request)  # This clears the session and logs out the user
-    return redirect('students_login')  # Replace 'login' with your login page URL name
+    logout(request)  
+    return redirect('students_login') 

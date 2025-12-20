@@ -1,6 +1,6 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login
-from .models import Class, Student, Subject, StudentFees, Months
+from .models import Class, Student, Subject, StudentFees, Months, GalleryImage
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.hashers import make_password
 
@@ -92,7 +92,7 @@ def fees_entry(request):
 
                 StudentFees.objects.create(
                     student=student,
-                    month=month,   # 👈 link to Months model
+                    month=month,   
                     tuition_fee=tuition_fee,
                     admission_fee=admission_fee,
                     exam_fee=exam_fee,
@@ -124,13 +124,10 @@ def update_student(request):
 
 
 
-from django.shortcuts import render, redirect, get_object_or_404
-from .models import GalleryImage
-
 def gallery(request):
     images = GalleryImage.objects.all().order_by('-uploaded_at')
 
-    # Handle image upload manually
+    
     if request.method == 'POST' and request.FILES.get('image'):
         uploaded_file = request.FILES['image']
         GalleryImage.objects.create(image=uploaded_file)
@@ -144,5 +141,4 @@ def delete_image(request, image_id):
     image = get_object_or_404(GalleryImage, id=image_id)
     image.delete()
     return redirect('gallery')
-from django.shortcuts import render
-from admin_panel.models import GalleryImage  # import your model
+

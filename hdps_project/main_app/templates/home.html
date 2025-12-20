@@ -1,204 +1,305 @@
 {% extends "base.html" %}
-
-{% block title %}HDPS{% endblock %}
-
-{% block content %}
 {% load static %}
 
+{% block title %}HDPS | Home{% endblock %}
+
+{% block content %}
+
 <style>
-  /* Slider */
-  .slider {
+
+.slider-container {
     position: relative;
     width: 100%;
-    height: 90vh;
+    height: 70vh;
     overflow: hidden;
-  }
-  .slides {
+    background-color: #000;
+}
+
+.slides {
     display: flex;
     width: 400%;
-    animation: slide 20s infinite;
-  }
-  .slides img {
-    width: 100%;
-    height: 90vh;
-    object-fit: cover;
-    filter: brightness(75%);
-  }
-  @keyframes slide {
-    0%, 20% { margin-left: 0; }
-    25%, 45% { margin-left: -100%; }
-    50%, 70% { margin-left: -200%; }
-    75%, 95% { margin-left: -300%; }
-    100% { margin-left: 0; }
-  }
+    height: 100%;
+    animation: slideAnimation 16s infinite;
+}
 
-  /* Portal Row (Links + Student + Teacher + Gallery) */
-  .portal-section {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 columns on large screens */
-    gap: 30px;
+.slides img {
+    width: 25%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(80%);
+}
+
+@keyframes slideAnimation {
+    0%, 20% { transform: translateX(0%); }
+    25%, 45% { transform: translateX(-25%); }
+    50%, 70% { transform: translateX(-50%); }
+    75%, 95% { transform: translateX(-75%); }
+    100% { transform: translateX(0%); }
+}
+
+.main-wrapper {
+    max-width: 1300px;
     margin: 40px auto;
     padding: 0 20px;
-  }
+    display: grid;
+    grid-template-columns: 1fr 320px; 
+    gap: 30px;
+}
 
-  /* Login Box */
-  .login-box {
-    background: rgba(255, 255, 255, 0.75);
-    padding: 25px 30px;
-    border-radius: 16px;
-    text-align: center;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
-    transition: 0.3s ease-in-out;
-  }
-  .login-box:hover {
-    transform: translateY(-5px) scale(1.02);
-  }
-  .login-box h3 {
-    margin-bottom: 20px;
-    font-size: 20px;
-    color: #2d3436;
-    font-weight: 600;
-  }
-  .login-btn {
+.center-content {
+    background: #fff;
+    padding: 40px;
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.center-content h1, .center-content h2 {
+    color: #1e272e;
+    border-bottom: 3px solid #2575fc;
     display: inline-block;
-    padding: 12px 24px;
-    font-size: 15px;
-    background: linear-gradient(135deg, #6a11cb, #2575fc);
-    color: #fff;
-    border: none;
-    border-radius: 12px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    width: 100%;
-    max-width: 180px;
-  }
-  .login-btn:hover {
-    background: linear-gradient(135deg, #2575fc, #6a11cb);
-    transform: scale(1.05);
-  }
+    margin-bottom: 15px;
+}
 
-  /* Important Links */
-  .links-section h2 {
-    font-size: 20px;
-    margin-bottom: 12px;
-    text-align: center;
-  }
-  .links-list {
+.center-content p {
+    line-height: 1.8;
+    color: #444;
+    font-size: 17px;
+    text-align: justify;
+    margin-bottom: 25px;
+}
+
+.md-container {
+    margin-top: 50px;
+    overflow: hidden; 
+}
+
+.md-image {
+    float: left; 
+    width: 250px;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    margin: 0 25px 15px 0; 
+}
+.sidebar {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-  }
-  .links-list a {
-    padding: 10px 15px;
-    background: #f8f9fa;
-    border-left: 5px solid #2575fc;
-    border-radius: 6px;
-    font-size: 15px;
-    text-decoration: none;
-    color: #2d3436;
-    font-weight: 500;
-    transition: 0.3s;
-  }
-  .links-list a:hover {
-    background: #eef2ff;
-    color: #2575fc;
-    transform: translateX(5px);
-  }
+    gap: 25px;
+}
 
-  /* Gallery */
-  .gallery-section {
-    text-align: center;
-  }
-  .gallery-section h2 {
+.card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+.card h3 {
+    margin-top: 0;
     font-size: 20px;
-    margin-bottom: 12px;
-  }
-  .gallery-preview {
-    width: 100%;
-    max-width: 220px;
-    margin: auto;
-  }
-  .gallery-preview img {
-    width: 100%;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    cursor: pointer;
-    transition: 0.3s;
-  }
-  .gallery-preview img:hover {
-    transform: scale(1.03);
-  }
+    color: #333;
+    border-left: 5px solid #fbc531;
+    padding-left: 10px;
+}
 
-  /* Responsive Breakpoints */
-  @media (max-width: 992px) {
-    .portal-section {
-      grid-template-columns: repeat(2, 1fr); /* 2 items per row on tablets */
+.links-list { display: flex; flex-direction: column; gap: 10px; }
+.links-list a {
+    text-decoration: none;
+    color: #555;
+    padding: 10px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+.links-list a:hover {
+    background: #2575fc;
+    color: #fff;
+}
+
+.portal-btn {
+    display: block;
+    text-align: center;
+    padding: 12px;
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.page-footer-info {
+    background: #1e272e;
+    color: #fff;
+    padding: 60px 20px;
+    margin-top: 50px;
+}
+
+.footer-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+}
+
+.footer-box h3 {
+    color: #fbc531;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.footer-box ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-box ul li {
+    margin-bottom: 12px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.social-links-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.social-links-footer a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    transition: 0.3s;
+}
+
+.social-links-footer a:hover {
+    color: #fbc531;
+    transform: translateX(10px);
+}
+
+
+@media (max-width: 1024px) {
+    .main-wrapper, .footer-container {
+        grid-template-columns: 1fr;
     }
-  }
-  @media (max-width: 600px) {
-    .portal-section {
-      grid-template-columns: 1fr; /* 1 item per row on mobile */
+}
+
+@media (max-width: 768px) {
+    .slider-container {
+        height: 35vh;
     }
-  }
+    .md-image {
+        float: none; 
+        display: block;
+        margin: 0 auto 20px auto;
+        width: 100%;
+        max-width: 300px;
+    }
+    .center-content {
+        padding: 20px;
+    }
+    .center-content h1 {
+        font-size: 28px;
+    }
+}
 </style>
 
-<!-- Image Slider -->
-<section class="slider">
-  <div class="slides">
-    <img src="{% static 'images/out1.jpg' %}" alt="Slide 1">
-    <img src="{% static 'images/pool2.jpg' %}" alt="Slide 2">
-    <img src="{% static 'images/out1.jpg' %}" alt="Slide 3">
-    <img src="{% static 'images/pool2.jpg' %}" alt="Slide 4"> 
-  </div>
-</section>
-
-<!-- Portal Section (Links + Student + Teacher + Gallery) -->
-<section class="portal-section">
-  
-  <!-- Left: Links -->
-  <div class="links-section">
-    <h2>Important Links</h2>
-    <div class="links-list">
-      <a href="#">📌 Admission Form</a>
-      <a href="#">📌 Exam Schedule</a>
-      <a href="#">📌 Annual Function</a>
-      <a href="#">📌 Latest Circulars</a>
+<section class="slider-container">
+    <div class="slides">
+        <img src="{% static 'images/out1.jpg' %}" alt="Slide 1">
+        <img src="{% static 'images/pool2.jpg' %}" alt="Slide 2">
+        <img src="{% static 'images/out1.jpg' %}" alt="Slide 3">
+        <img src="{% static 'images/pool2.jpg' %}" alt="Slide 4">
     </div>
-  </div>
-
-  <!-- Middle: Student Portal -->
-  <div class="login-box">
-    <h3>Welcome to Student Portal</h3>
-    <a href="{% url 'students_login' %}" class="login-btn">Go to Login</a>
-  </div>
-
-  <!-- Middle: Teacher Portal -->
-  <div class="login-box">
-    <h3>Welcome to Teacher Portal</h3>
-    <a href="#" class="login-btn">Go to Login</a>
-  </div>
-
-<!-- Right: Gallery -->
-<div class="gallery-section">
-  <h2>Gallery</h2>
-  <div class="gallery-preview">
-    {% if images %}
-      <a href="{% url 'public_gallery' %}">
-        <img src="{{ images.0.image.url }}" alt="Gallery Preview">
-      </a>
-    {% else %}
-      <a href="{% url 'public_gallery' %}">
-        <img src="{% static 'images/in1.jpg' %}" alt="Default Gallery">
-      </a>
-    {% endif %}
-  </div>
-</div>
-
-
-
 </section>
 
+<main class="main-wrapper">
 
+    <div class="center-content">
+        <h1>Welcome To Our School</h1>
+        <p>
+            At HDPS, we are dedicated to fostering a love for learning and a commitment to excellence. 
+            Our school provides a safe, supportive, and stimulating environment where every student is 
+            encouraged to reach their full potential. With a balance of academic rigor and creative 
+            exploration, we prepare our students to become confident, compassionate global citizens. <b>Read more...</b>
+        </p>
+
+        <div class="md-container">
+            <h2>From the Desk of Managing Director</h2>
+            <div class="md-content">
+                <img src="{% static 'images/logohdps.png' %}" alt="Managing Director" class="md-image">
+                <p>
+                    "Our mission is to empower students with the knowledge and values required to 
+                    succeed in the 21st century. We believe in holistic development, ensuring that 
+                    while our students excel in academics, they also grow in character and social 
+                    responsibility."
+                </p>
+                <p>
+                    We welcome you to be a part of our journey towards educational excellence. Together, 
+                    we can shape a brighter future for the next generation. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsam nulla iure fugit vitae natus tenetur autem cupiditate quibusdam voluptates dicta molestiae, amet enim, ipsum tempore excepturi quos commodi, eaque totam?
+                </p>
+                </div>
+        </div>
+    </div>
+
+    <aside class="sidebar">
+        <div class="card">
+            <h3>Important Links</h3>
+            <div class="links-list">
+                <a href="#">📌 Admission Form 2024-25</a>
+                <a href="#">📌 Academic Calendar</a>
+                <a href="#">📌 School Rules & Regulations</a>
+                <a href="#">📌 Examination Schedule</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Student Portal</h3>
+            <a href="{% url 'students_login' %}" class="portal-btn">Student Login</a>
+        </div>
+
+        <div class="card">
+            <h3>Teacher Portal</h3>
+            <a href="#" class="portal-btn">Teacher Login</a>
+        </div>
+
+        <div class="card">
+            <h3>Quick Gallery</h3>
+            {% if images %}
+                <img src="{{ images.0.image.url }}" style="width: 100%; border-radius: 10px;">
+            {% else %}
+                <img src="{% static 'images/in1.jpg' %}" style="width: 100%; border-radius: 10px;">
+            {% endif %}
+        </div>
+    </aside>
+
+</main>
+
+<section class="page-footer-info">
+    <div class="footer-container">
+        <div class="footer-box">
+            <h3>Why Choose Us</h3>
+            <ul>
+                <li>✔ Experienced & Qualified Educators</li>
+                <li>✔ State-of-the-Art Infrastructure</li>
+                <li>✔ Comprehensive Sports & Arts Programs</li>
+                <li>✔ Safe & Secure Campus Environment</li>
+                <li>✔ Emphasis on Moral Values & Ethics</li>
+            </ul>
+        </div>
+
+        <div class="footer-box">
+            <h3>Follow Us On</h3>
+            <div class="social-links-footer">
+                <a href="#">📘 Facebook</a>
+                <a href="#">📸 Linkedin</a>
+                <a href="#">@ Twitter</a>
+                <a href="#">▶ YouTube</a>
+            </div>
+        </div>
+    </div>
+</section>
 
 {% endblock %}

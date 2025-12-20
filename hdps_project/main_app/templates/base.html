@@ -4,133 +4,211 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{% block title %}Website{% endblock %}</title>
-
+  {% load static %}
   <style>
     body {
       margin: 0;
       font-family: "Segoe UI", Arial, sans-serif;
-      background: #f9f9f9;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
-
-    /* Navbar */
-    .navbar {
+    main { flex: 1; }
+    .header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: #404851;
-      padding: 10px 20px;
-      position: relative;
+      background: linear-gradient(90deg, #1e272e 0%, #2f3640 50%, #1e272e 100%);
+      padding: 10px 30px;
+      color: white;
+      position: sticky;
+      top: 0;
       z-index: 1000;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      border-bottom: 3px solid #fbc531;
     }
-
-    .navbar img {
-      height: 50px;
-    }
-
-    .nav-links {
+    .logo-container {
       display: flex;
-      gap: 20px;
+      flex-direction: column;
+      align-items: center;
+      flex: 0 0 auto;
     }
-
-    .nav-links a {
+    .logo-box img {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      padding: 2px;
+    }
+    .estd-text {
+      font-size: 11px;
+      font-weight: 800;
+      color: #fbc531;
+      margin-top: 4px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .school-branding {
+      flex: 1;
+      text-align: center;
+      padding: 0 20px;
+    }
+    .school-name {
+      font-size: 32px;
+      font-weight: 800;
+      margin: 0;
+      letter-spacing: 1px;
+      line-height: 1.1;
+      color: #fbc531;
+      text-transform: uppercase;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+      font-family: 'Georgia', serif;
+    }
+    .location-text {
+      font-size: 14px;
+      color: #dcdde1;
+      font-weight: 400;
+      letter-spacing: 2px;
+      margin-top: 5px;
+      display: block;
+    }
+    .right-box {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      flex: 0 0 auto;
+    }
+    .contact {
+      display: flex;
+      gap: 15px;
+      font-size: 12px;
+      margin-bottom: 5px;
+    }
+    .contact a { color: #fbc531; text-decoration: none; font-weight: 600; }
+    .menu { display: flex; gap: 20px; }
+    .menu a {
+      margin-top: 40px;
       color: white;
       text-decoration: none;
-      font-size: 16px;
-      font-weight: 500;
+      font-size: 15px;
+      font-weight: 600;
       transition: 0.3s;
+      padding: 5px 10px;
+      border-radius: 4px;
     }
-
-    .nav-links a:hover {
-      color: #ffcc00;
+    .menu a:hover { 
+      background: rgba(251, 197, 49, 0.2); 
+      color: #fbc531; 
     }
-
-    /* Hamburger */
     .hamburger {
       display: none;
-      font-size: 26px;
       cursor: pointer;
-      color: white;
+      flex-direction: column;
+      gap: 5px;
     }
-
-    @media (max-width: 768px) {
-      .nav-links {
+    .hamburger span {
+      width: 25px;
+      height: 3px;
+      background-color: #fbc531;
+      border-radius: 2px;
+    }
+    @media (max-width: 1100px) {
+      .school-name { font-size: 24px; }
+    }
+    @media (max-width: 850px) {
+      .header { padding: 10px 15px; }
+      .hamburger { display: flex; }
+      .contact { display: none; } 
+      .school-name { font-size: 18px; }
+      .location-text { font-size: 11px; letter-spacing: 1px; }
+      .right-box {
         display: none;
         position: absolute;
-        top: 65px;
-        right: 20px;
-        background: rgba(64,72,81,0.95);
-        flex-direction: column;
-        gap: 15px;
-        padding: 15px;
-        border-radius: 10px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-        z-index: 1001;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: #2f3640;
+        padding: 20px 0;
+        text-align: center;
+        border-bottom: 5px solid #fbc531;
       }
-      .nav-links.active {
-        display: flex;
+      .right-box.active { display: flex; flex-direction: column; align-items: center; }
+      .right-box.active .contact { 
+        display: flex; 
+        flex-direction: column; 
+        gap: 10px; 
+        margin-bottom: 15px; 
       }
-      .hamburger {
-        display: block;
-      }
+      .menu { flex-direction: column; gap: 15px; }
+      .menu a { margin-top: 0; }
+      .logo-box img { width: 55px; height: 55px; }
     }
-
-    /* Footer */
     footer {
-      background: #404851;
-      color: white;
       text-align: center;
-      padding: 10px;
-      margin-top: 20px;
+      padding: 15px;
+      background: #1e272e;
+      color: #fbc531;
+      font-size: 12px;
+      border-top: 2px solid #fbc531;
     }
+    footer p { margin: 5px 0; color: #fff; }
   </style>
 </head>
 <body>
-  
-  <!-- Navbar -->
-  <header class="navbar">
-    <a href="{% url 'home' %}">
-      <img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png" alt="School Logo">
-    </a>
-    <div class="hamburger" id="hamburger">☰</div>
-    <nav class="nav-links" id="nav-links">
+<header class="header">
+  <div class="logo-container">
+    <div class="logo-box">
+      <a href="{% url 'home' %}">
+        <img src="{% static 'images/logohdps.png' %}" alt="Logo">
+      </a>
+    </div>
+    <span class="estd-text">ESTD-2010</span>
+  </div>
+  <div class="school-branding">
+    <h1 class="school-name">Humpty Dumpty a Play/Public School</h1>
+    <span class="location-text">Hariharpur, Darbhanga</span>
+  </div>
+  <div class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <div class="right-box" id="nav-menu">
+    <div class="contact">
+      <a href="tel:+919835222492">☎ +91 98352 22492</a>
+      <a href="mailto:hdpsschool@gmail.com">✉ hdpsschool@gmail.com</a>
+    </div>
+    <nav class="menu">
       <a href="{% url 'home' %}">Home</a>
       <a href="{% url 'about_us' %}">About</a>
-      <a href="{% url 'admission_enquiry' %}">Admission enquiry</a>
+      <a href="{% url 'admission_enquiry' %}">Admission</a>
       <a href="https://www.youtube.com/@shreeramhumptydumptyaplayp4538">YouTube</a>
       <a href="{% url 'login' %}">Admin</a>
       <a href="{% url 'contact_us' %}">Contact</a>
     </nav>
-  </header>
-
+  </div>
+</header>
+<main>
   {% block content %}{% endblock %}
-
-  <footer>
-    <p>DESIGNED AND DEVELOPED BY @ ANKIT KUMAR JHA</p>
-  </footer>
-
-  <script>
-    const hamburger = document.getElementById("hamburger");
-    const navLinks = document.getElementById("nav-links");
-
-    // Toggle menu
-    hamburger.addEventListener("click", (e) => {
-      e.stopPropagation(); // prevent closing immediately
-      navLinks.classList.toggle("active");
-    });
-
-    // Close menu when clicking outside
-    document.addEventListener("click", (e) => {
-      if (navLinks.classList.contains("active") && !navLinks.contains(e.target) && e.target !== hamburger) {
-        navLinks.classList.remove("active");
-      }
-    });
-
-    // Close menu after clicking a link
-    navLinks.querySelectorAll("a").forEach(link => {
-      link.addEventListener("click", () => {
-        navLinks.classList.remove("active");
-      });
-    });
-  </script>
+</main>
+<footer>
+  <p style="font-weight: bold; color: #fbc531;">Humpty Dumpty a Play/Public School - Hariharpur, Darbhanga</p>
+  <p>Copyright © 2025 | All Rights Reserved</p>
+  <p style="font-size: 10px; opacity: 0.7;">DESIGNED AND DEVELOPED BY © ANKIT KUMAR JHA</p>
+</footer>
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const navMenu = document.getElementById('nav-menu');
+  hamburger.addEventListener('click', (e) => {
+    e.stopPropagation();
+    navMenu.classList.toggle('active');
+  });
+  window.addEventListener('click', (e) => {
+    if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+      navMenu.classList.remove('active');
+    }
+  });
+</script>
 </body>
 </html>
